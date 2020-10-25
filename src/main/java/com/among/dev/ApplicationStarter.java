@@ -2,10 +2,12 @@ package com.among.dev;
 
 import com.among.dev.server.Server;
 
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+@ApplicationPath("rest")
 public class ApplicationStarter extends Application {
 
 
