@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import java.util.concurrent.Executor;
 
 @Path("api")
-public class Server extends Application implements LoginInterface {
+public class Server implements LoginInterface {
 
 
     @Inject
