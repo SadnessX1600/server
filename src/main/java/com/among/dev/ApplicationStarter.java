@@ -1,20 +1,13 @@
 package com.among.dev;
 
-import com.among.dev.server.Server;
+import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
 
 @ApplicationPath("rest")
-public class ApplicationStarter extends Application {
+public class ApplicationStarter extends ResourceConfig {
 
-
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> returnValue = new HashSet<>();
-        returnValue.add(Server.class);
-        return returnValue;
+    public ApplicationStarter() {
+        packages("com.among.dev.server");
     }
 }
