@@ -16,7 +16,6 @@ import java.util.concurrent.Executor;
 public class Server implements LoginInterface {
 
 
-    @Inject
     private Executor executor;
     private UserStorage userStorage;
 
