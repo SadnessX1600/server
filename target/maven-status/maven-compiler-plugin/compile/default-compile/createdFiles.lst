@@ -1,11 +1,13 @@
-com\among\dev\ApplicationStarter.class
-com\among\dev\authentification\utilities\database\DBConnector.class
-com\among\dev\server\Server.class
 com\among\dev\authentification\utilities\database\DBConnector$1.class
 com\among\dev\authentification\utilities\database\interfaces\DBEntity.class
 com\among\dev\authentification\utilities\database\UserStorage.class
 com\among\dev\authentification\model\entities\User.class
+com\among\dev\authentification\model\helpers\constants\ValidatorConstants.class
 com\among\dev\authentification\utilities\database\enums\DBCommands.class
 com\among\dev\authentification\utilities\database\interfaces\DBUserInterface.class
+com\among\dev\ApplicationStarter.class
+com\among\dev\authentification\utilities\database\DBConnector.class
+com\among\dev\server\Server.class
+com\among\dev\authentification\model\helpers\validators\EmailRegexpValidator.class
 com\among\dev\authentification\utilities\database\interfaces\DBConnectionInterface.class
 com\among\dev\server\interfaces\LoginInterface.class

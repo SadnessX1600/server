@@ -1,16 +1,17 @@
 package com.among.dev.authentification.model.entities;
 
+import com.among.dev.authentification.model.helpers.validators.EmailRegexpValidator;
 import com.among.dev.authentification.utilities.database.interfaces.DBEntity;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
 @Entity(name = "User")
 @Table(name = "USER_ACCOUNT")
+@SequenceGenerator(name="USER_ACCOUNT" , sequenceName="idGenerator")
 public class User implements DBEntity {
-
-    @GeneratedValue
-    int id;
+//    @Column(unique=true)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="idGenerator")
+//    int id;
 
     @Id
     @Column(name = "username", length = 32, unique = true)
@@ -20,18 +21,32 @@ public class User implements DBEntity {
     @Column(name = "password", length = 32)
     private String password;
 
+    // email is not an id, but should be correct!
     @Column(name = "email", length = 256, unique = true)
     private String email;
 
+    private final static String defaultEmailString = "UNKNOWNEMAIL@ANYTHING.COM";
+
+    // TODO check that email is actually exist
+    // sending a code for verification...
+    private boolean checkEmailForValid(String email) {
+        return EmailRegexpValidator.validateEmail(email);
+    }
 
     public User() {}
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
-        this.email = email;
+        //TODO may be better to throw an error :)
+        if(checkEmailForValid(email)) {
+            this.email = email;
+        } else {
+            this.email = defaultEmailString;
+        }
     }
 
+    // TODO Check that it's correct to create user as user+pass only
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -45,13 +60,13 @@ public class User implements DBEntity {
         return "username";
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getUsername() {
         return username;
