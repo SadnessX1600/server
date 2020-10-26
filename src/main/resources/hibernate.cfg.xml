@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name="connection.url">jdbc:postgresql://localhost/amongASS</property> <!-- BD Mane -->
+        <property name="connection.url">jdbc:postgresql://localhost/USER_ACCOUNT</property> <!-- BD Mane -->
         <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
         <property name="connection.username">admin</property> <!-- DB User -->
         <property name="connection.password">admin</property> <!-- DB Password -->

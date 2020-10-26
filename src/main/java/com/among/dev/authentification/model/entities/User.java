@@ -5,19 +5,8 @@ import com.among.dev.authentification.utilities.database.interfaces.DBEntity;
 import javax.persistence.*;
 
 @Entity(name = "User")
-@Table(name = "User")
+@Table(name = "USER_ACCOUNT")
 public class User implements DBEntity {
-
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
     @Id
     @GeneratedValue
@@ -32,6 +21,19 @@ public class User implements DBEntity {
     @Column(name = "email", length = 256, unique = true)
     private String email;
 
+
+    public User() {}
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getPK() {
         return username;

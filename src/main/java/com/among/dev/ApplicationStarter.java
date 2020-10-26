@@ -6,7 +6,6 @@ import javax.ws.rs.ApplicationPath;
 
 @ApplicationPath("rest")
 public class ApplicationStarter extends ResourceConfig {
-
     public ApplicationStarter() {
         packages("com.among.dev.server");
     }
