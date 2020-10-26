@@ -52,10 +52,12 @@ public class Server implements LoginInterface {
     public void login(@QueryParam("username") String username, @QueryParam("password") String password, @Suspended AsyncResponse response) {
         User user = new User(username, password);
         try {
+            System.out.println("User:" + userStorage.getUser(user));
             response.resume(userStorage.getUser(user).isPresent() ? true : Response.status(Response.Status.SERVICE_UNAVAILABLE)
                     .entity("No such user in db")
                     .build());
         } catch (Exception e) {
+            System.out.println(e);
             response.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
                     .entity("Error occurred")
                     .build());

@@ -1,6 +1,7 @@
 package com.among.dev.authentification.model.entities;
 
 import com.among.dev.authentification.utilities.database.interfaces.DBEntity;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
@@ -8,13 +9,14 @@ import javax.persistence.*;
 @Table(name = "USER_ACCOUNT")
 public class User implements DBEntity {
 
-    @Id
     @GeneratedValue
     int id;
 
+    @Id
     @Column(name = "username", length = 32, unique = true)
     private String username;
 
+    @Id
     @Column(name = "password", length = 32)
     private String password;
 
@@ -73,5 +75,27 @@ public class User implements DBEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (username == null) {
+            if (other.username != null)
+                return false;
+        } else if (!username.equals(other.username))
+            return false;
+        if (password == null) {
+            if (other.password != null)
+                return false;
+        } else if (!password.equals(other.password))
+            return false;
+        return true;
     }
 }
