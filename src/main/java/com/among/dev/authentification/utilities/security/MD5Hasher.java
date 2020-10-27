@@ -14,7 +14,7 @@ public class MD5Hasher implements IMD5 {
         try {
             this.md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.debug(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
     }
 

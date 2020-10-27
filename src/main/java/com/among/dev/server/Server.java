@@ -8,6 +8,7 @@ import com.among.dev.authentification.utilities.database.interfaces.DBUserInterf
 import com.among.dev.authentification.utilities.security.IMD5;
 import com.among.dev.authentification.utilities.security.MD5Hasher;
 import com.among.dev.server.interfaces.LoginInterface;
+import org.apache.log4j.Logger;
 import org.glassfish.jersey.server.ManagedAsync;
 
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ public class Server implements LoginInterface {
     private DBUserInterface userStorage;
     private IEmailRegexpValidator emailRegexpValidator;
     private IMD5 MD5Hasher;
+    private Logger LOGGER = Logger.getLogger(this.getClass());
 
     public Server() {
         userStorage = new UserStorage();
@@ -50,7 +52,7 @@ public class Server implements LoginInterface {
             userStorage.createUser(user);
             response.resume(true);
         } catch (Exception e) {
-            System.out.println(e);
+            LOGGER.error(e.getMessage());
             response.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
                     .entity("Operation timed out")
                     .build());
@@ -64,12 +66,12 @@ public class Server implements LoginInterface {
     public void login(@QueryParam("username") String username, @QueryParam("password") String password, @Suspended AsyncResponse response) {
         User user = new User(username, MD5Hasher.calculateMD5(password));
         try {
-            System.out.println("User:" + userStorage.getUser(user));
+            LOGGER.debug("User:" + userStorage.getUser(user));
             response.resume(userStorage.getUser(user).isPresent() ? userStorage.getUser(user).get().getEmail() : Response.status(Response.Status.SERVICE_UNAVAILABLE)
                     .entity("No such user in db")
                     .build());
         } catch (Exception e) {
-            System.out.println(e);
+            LOGGER.error(e.getMessage());
             response.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
                     .entity("Error occurred")
                     .build());
