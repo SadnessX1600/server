@@ -4,8 +4,8 @@ import com.among.dev.authentification.model.helpers.constants.ValidatorConstants
 
 import java.util.regex.Matcher;
 
-public class EmailRegexpValidator {
-    public static boolean validateEmail(String emailString) {
+public class EmailRegexpValidator implements IEmailRegexpValidator{
+    public boolean validateEmail(String emailString) {
         Matcher matcher = ValidatorConstants.VALID_EMAIL_ADDRESS_REGEX.matcher(emailString);
         return matcher.find();
     }
