@@ -1,20 +1,19 @@
 package com.among.dev.authentification.utilities.security;
 
-import org.apache.log4j.Logger;
-
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5Hasher implements IMD5 {
-    Logger LOGGER = Logger.getLogger(this.getClass());
+    //Logger LOGGER = Logger.getLogger(this.getClass());
     private MessageDigest md;
+    private final String HASH_TYPE = "MD5";
 
     public MD5Hasher() {
         try {
-            this.md = MessageDigest.getInstance("MD5");
+            this.md = MessageDigest.getInstance(HASH_TYPE);
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error(e.getMessage());
+            //LOGGER.error(e.getMessage());
         }
     }
 
